@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
+      - echo Logging in to Amazon ECR......
       - aws --version
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 058264384896.dkr.ecr.us-west-2.amazonaws.com
 
@@ -25,9 +25,5 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"web","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
  artifacts:
-  files:
-    - '**/*'
-  base-directory: base_dir
-  name: build-artifact-name
-  discard-paths: no
+    files: imagedefinitions.json
     
